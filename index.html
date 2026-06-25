@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>動物病院・クリニック | サンプルサイト</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Quicksand:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="orbs"><span></span><span></span><span></span></div>
+
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🐾</span> サンプル クリニック
+      </div>
+      <nav class="nav-links">
+        <a href="#about">当院について</a>
+        <a href="#features">3つの特徴</a>
+        <a href="#schedule">診療時間</a>
+        <a href="#gallery">院内・設備</a>
+        <a href="#contact" class="nav-cta">お問い合わせ</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <canvas
+        id="hero-canvas"
+        style="position: absolute; inset: 0; z-index: 1; pointer-events: none"
+      ></canvas>
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="./videos/99881_1280x720.mov" type="video/mp4" />
+      </video>
+
+      <div class="overlay"></div>
+
+      <div class="hero-content container">
+        <p class="eyebrow">PASTEL BLUE HEALTHCARE</p>
+        <h1>こころに寄り添う、<br class="sp-only" />やさしい医療を。</h1>
+        <p class="lead">
+          大切なご家族や、あなた自身の小さなお悩みに。パステルブルーの穏やかな空間のなかで、丁寧な対話と確かな技術をもってお応えします。いつでもお気軽にご相談ください。
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#contact">お問い合わせはこちら</a>
+          <a class="btn ghost" href="#schedule">診療時間を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stats-container container">
+        <div class="stat-item">
+          <span class="counter" data-target="12">0</span>
+          <p>開業（年）</p>
+        </div>
+        <div class="stat-item">
+          <span class="counter" data-target="9500">0</span>
+          <p>年間診療・サポート数</p>
+        </div>
+        <div class="stat-item">
+          <span class="counter" data-target="98">0</span>
+          <p>あんしん満足度(%)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
+      <div class="about-grid">
+        <div class="about-img-box">
+          <img src="images/innai.jpg" alt="リラックスできる院内" />
+        </div>
+        <div class="about-text-box">
+          <div class="section-title-wrap">
+            <p class="section-sub">ABOUT US</p>
+            <h2>居心地のよさと安心感を大切に</h2>
+          </div>
+          <p class="about-desc">
+            私たちは、通院に対する不安や緊張を少しでも和らげられるよう、温かみのあるパステルカラーを基調とした環境づくりを行っています。お一人おひとり、あるいは一匹一匹の状態に合わせて、じっくりとお話を伺うことから始めます。
+          </p>
+          <ul class="about-check-list">
+            <li>専門資格を持ったスタッフによる優しいケア</li>
+            <li>ベビーカーやペット用カートでも移動しやすいバリアフリー設計</li>
+            <li>分かりやすい言葉での丁寧なカルテ・状態説明</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features container">
+      <div class="section-title-wrap text-center">
+        <p class="section-sub">OUR FEATURES</p>
+        <h2>大切にしている3つのこと</h2>
+      </div>
+      <div class="cards">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <h3>お話をしっかり聞くカウンセリング</h3>
+          <p>
+            ただお薬を出すだけでなく、普段の生活習慣やちょっとした変化についてじっくり対話をし、最適なアプローチを一緒に考えます。
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <h3>負担の少ないやさしいアプローチ</h3>
+          <p>
+            過度な緊張を与えないよう、声かけや空間の温度・明るさにも配慮。リラックスして過ごせるような工夫を徹底しています。
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <h3>地域の身近な相談窓口として</h3>
+          <p>
+            「こんな些細なことで連絡してもいいのかな」と思うようなことでも大丈夫です。地域のみなさまの身近な保健室を目指しています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="schedule">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <p class="section-sub">CLINIC HOURS</p>
+          <h2>診療時間のご案内</h2>
+        </div>
+
+        <div class="schedule-table-wrap">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>受付時間</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th class="sat">土</th>
+                <th class="sun">日・祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time-label">09:00 〜 12:00</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td class="closed">休</td>
+                <td>〇</td>
+                <td class="sat">〇</td>
+                <td class="closed">休</td>
+              </tr>
+              <tr>
+                <td class="time-label">14:00 〜 18:00</td>
+                <td>〇</td>
+                <td>〇</td>
+                <td>▲</td>
+                <td class="closed">休</td>
+                <td>〇</td>
+                <td class="sat">▲</td>
+                <td class="closed">休</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="schedule-note">
+          ※ 木曜日・日曜日・祝日は休診日となります。<br class="sp-only" />
+          ※ ▲…水曜日・土曜日の午後は14:00〜16:30までの診療となります。
+        </p>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <div class="section-title-wrap text-center">
+          <p class="section-sub">CLINIC TOUR</p>
+          <h2>院内・設備の紹介</h2>
+        </div>
+      </div>
+
+      <div class="gallery-hybrid-slider" id="gallery-slider">
+        <div class="gallery-slider-track" id="gallery-track">
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img
+                src="images/enntoransu.jpg"
+                alt="エントランス"
+                draggable="false"
+              />
+            </div>
+            <p>パステルブルーがベースのやさしいエントランス</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img src="images/machiai.jpg" alt="待合室" draggable="false" />
+            </div>
+            <p>広々としたソファでゆったり待てる待合スペース</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img
+                src="images/kaunseringu.jpg"
+                alt="カウンセリング"
+                draggable="false"
+              />
+            </div>
+            <p>お悩みを落ち着いてお話しできる相談ルーム</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img
+                src="images/sinsatudai.jpg"
+                alt="診療ベッド"
+                draggable="false"
+              />
+            </div>
+            <p>清潔に保たれた安心の診療・施術ベッド</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img src="images/saisin.jpg" alt="最新設備" draggable="false" />
+            </div>
+            <p>身体に無理な負担をかけない最新の検査機器</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img
+                src="images/kizzu.jpg"
+                alt="キッズスペース"
+                draggable="false"
+              />
+            </div>
+            <p>お子様やペットも退屈しないリラックスエリア</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img
+                src="images/pauda.jpg"
+                alt="パウダールーム"
+                draggable="false"
+              />
+            </div>
+            <p>身だしなみを整えられる清潔なパウダースペース</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img src="images/rihabiri.jpg" alt="リハビリ" draggable="false" />
+            </div>
+            <p>明るい光が差し込む快適な回復・リハビリスペース</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img src="images/kuuki.jpg" alt="クリーン" draggable="false" />
+            </div>
+            <p>常に新鮮な空気を維持する医療用クリーンシステム</p>
+          </div>
+          <div class="gallery-card">
+            <div class="card-img-wrap">
+              <img src="images/tyuusyajou.jpg" alt="駐車場" draggable="false" />
+            </div>
+            <p>車寄せもしやすいゆとりある駐車スペース</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container contact-inner">
+        <div class="section-title-wrap text-center">
+          <p class="section-sub">CONTACT US</p>
+          <h2>お問い合わせ・ご相談</h2>
+          <p class="contact-lead-text">
+            各種お悩みに関するご質問やご相談、メッセージはこちらからお気軽にお寄せください。
+          </p>
+        </div>
+        <div class="contact-form">
+          <div class="form-group-row">
+            <div class="form-group">
+              <input type="text" placeholder="お名前" required />
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="お電話番号" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="メールアドレス" required />
+          </div>
+          <div class="form-group">
+            <select required>
+              <option value="" disabled selected>
+                お問い合わせ内容の項目を選択してください
+              </option>
+              <option value="consultation">症状や治療についてのご相談</option>
+              <option value="facility">院内設備やサービスに関するご質問</option>
+              <option value="other">その他のお問い合わせ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea
+              placeholder="お問い合わせ内容をご記入ください"
+              rows="6"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn primary submit-btn">送信する</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-flex">
+        <p class="footer-logo">🐾 あおぞらクリニック</p>
+        <p class="footer-copy">
+          &copy; 2026 Aozora Clinic. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
