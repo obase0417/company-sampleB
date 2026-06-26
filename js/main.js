@@ -1,63 +1,39 @@
-// --- 数値カウンターのアニメーション ---
-document.querySelectorAll(".counter").forEach((c) => {
-  let t = +c.dataset.target,
-    v = 0;
-  const run = () => {
-    v += Math.max(1, t / 80);
-    if (v < t) {
-      c.textContent = Math.floor(v);
-      requestAnimationFrame(run);
-    } else {
-      c.textContent =
-        t >= 1000 ? Math.floor(t).toLocaleString() + "+" : t + "+";
-    }
-  };
-  run();
-});
-
-// --- 院内・設備 (GALLERY) 自動スクロール × 手動加減速ハイブリッド ---
+// --- 空間紹介 (GALLERY) 無限ループ・自動スクロール × ドラッグハイブリッド ---
 (() => {
   const slider = document.getElementById("gallery-slider");
   const track = document.getElementById("gallery-track");
   if (!slider || !track) return;
 
-  // ループ空間形成のためにカード群を複製
+  // 無限スクロール用に要素をクローン
   const items = Array.from(track.children);
   items.forEach((item) => {
     const clone = item.cloneNode(true);
     track.appendChild(clone);
   });
 
-  let currentX = 0; // 現在の横スクロール位置
-  let isDragging = false; // ドラッグ検知フラグ
-  let startX = 0; // タッチ・クリック開始時のX
-  let dragStartX = 0; // ドラッグ開始時の元の位置
-  const autoSpeed = 0.65; // パステル調に合わせて穏やかなスピードに微調整
+  let currentX = 0;
+  let isDragging = false;
+  let startX = 0;
+  let dragStartX = 0;
+  const autoSpeed = 0.6; // スムーズな等速移動スピード
 
-  // 1セット分の全体の長さを計算
   function getHalfWidth() {
     const card = track.querySelector(".gallery-card");
     if (!card) return 0;
     const style = window.getComputedStyle(track);
-    const gap = parseInt(style.gap) || 24;
+    const gap = parseInt(style.gap) || 20;
     return (card.offsetWidth + gap) * items.length;
   }
 
-  // 毎フレームのループアニメーション
   function updateScroll() {
     const halfWidth = getHalfWidth();
 
     if (!isDragging && halfWidth > 0) {
-      // 自動的に左へじわじわ移動
       currentX -= autoSpeed;
-
-      // 1セット分抜けきったら位置をリセット
       if (currentX <= -halfWidth) {
-        currentX += halfWidth;
+        currentX += halfWidth; // 左端に達したらリセットしてループ
       }
     }
-
-    // 手動で右方向に逆流（巻き戻し）された場合の無限ループ調整
     if (currentX > 0 && halfWidth > 0) {
       currentX -= halfWidth;
     }
@@ -66,7 +42,7 @@ document.querySelectorAll(".counter").forEach((c) => {
     requestAnimationFrame(updateScroll);
   }
 
-  // 操作処理
+  // マウス/タッチドラッグのイベント処理
   const dragStart = (x) => {
     isDragging = true;
     startX = x;
@@ -76,19 +52,17 @@ document.querySelectorAll(".counter").forEach((c) => {
   const dragMove = (x) => {
     if (!isDragging) return;
     const deltaX = x - startX;
-    currentX = dragStartX + deltaX; // ドラッグ移動量に応じて加減速
+    currentX = dragStartX + deltaX;
   };
 
   const dragEnd = () => {
     isDragging = false;
   };
 
-  // マウスイベント
   slider.addEventListener("mousedown", (e) => dragStart(e.clientX));
   window.addEventListener("mousemove", (e) => dragMove(e.clientX));
   window.addEventListener("mouseup", dragEnd);
 
-  // スマホ向けタッチイベント
   slider.addEventListener(
     "touchstart",
     (e) => dragStart(e.touches[0].clientX),
@@ -102,145 +76,135 @@ document.querySelectorAll(".counter").forEach((c) => {
   requestAnimationFrame(updateScroll);
 })();
 
-// --- キャンバスアニメーション (パステルコンセプト：光パウダー＆オーガニックウェーブ) ---
+// --- 数値カウンタアニメーション (STATS SECTION) ---
 (() => {
-  const configs = [
-    {
-      el: document.getElementById("hero-canvas"),
-      count: 20,
-      color: "rgba(186, 226, 245, 0.4)", // 淡い水色の光パウダー
-      speedMin: 0.3,
-      speedMax: 1.0,
-      lengthMin: 4,
-      lengthMax: 12,
-      isCircle: true,
-    },
-    {
-      el: document.getElementById("bg-canvas"),
-      count: 3,
-      color: "rgba(186, 226, 245, 0.15)", // 背景全体をゆったり流れる穏やかなウェーブ
-      isWave: true,
-    },
-  ];
+  const counters = document.querySelectorAll(".counter");
+  if (counters.length === 0) return;
 
-  const layers = [];
+  const startCounter = (el) => {
+    const target = parseInt(el.getAttribute("data-target"), 10);
+    const duration = 2000; // 2秒かけてカウントアップ
+    const stepTime = 20;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+    let current = 0;
 
-  configs.forEach((cfg) => {
-    const c = cfg.el;
-    if (!c) return;
-    const ctx = c.getContext("2d");
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        el.innerText = target.toLocaleString();
+        clearInterval(timer);
+      } else {
+        el.innerText = Math.floor(current).toLocaleString();
+      }
+    }, stepTime);
+  };
+
+  // 交差監視（スクロールして画面に入ったら発火）
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  counters.forEach((counter) => observer.observe(counter));
+})();
+
+// --- 背景粒子・波アニメーション (CANVAS EFFECTS) ---
+(() => {
+  const heroCanvas = document.getElementById("hero-canvas");
+  const bgCanvas = document.getElementById("bg-canvas");
+
+  const setupCanvas = (canvas, drawFn) => {
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
 
     const resize = () => {
-      c.width = c.clientWidth || window.innerWidth;
-      c.height = c.clientHeight || window.innerHeight;
+      canvas.width = canvas.clientWidth || window.innerWidth;
+      canvas.height = canvas.clientHeight || window.innerHeight;
     };
     resize();
     window.addEventListener("resize", resize);
 
-    const items = [];
-    if (cfg.isCircle) {
-      for (let i = 0; i < cfg.count; i++) {
-        items.push({
-          x: Math.random() * c.width,
-          y: Math.random() * c.height,
-          radius:
-            cfg.lengthMin + Math.random() * (cfg.lengthMax - cfg.lengthMin),
-          speed: cfg.speedMin + Math.random() * (cfg.speedMax - cfg.speedMin),
-        });
-      }
-    } else if (cfg.isWave) {
-      for (let i = 0; i < cfg.count; i++) {
-        items.push({
-          y: c.height * 0.35 + Math.random() * c.height * 0.3,
-          length: 0.001 + Math.random() * 0.0015,
-          amplitude: 25 + Math.random() * 40,
-          speed: 0.004 + Math.random() * 0.008,
-          phase: Math.random() * 50,
-        });
-      }
-    }
+    const loop = () => {
+      drawFn(canvas, ctx);
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  };
 
-    layers.push({ c, ctx, items, cfg });
+  // 1. ヒーローセクションのゆったりとした波線の演出
+  let wavePhase = 0;
+  setupCanvas(heroCanvas, (canvas, ctx) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(2, 132, 199, 0.04)";
+    ctx.lineWidth = 3;
+    wavePhase += 0.005;
+
+    for (let x = 0; x < canvas.width; x++) {
+      const y = canvas.height * 0.6 + Math.sin(x * 0.002 + wavePhase) * 30;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
   });
 
-  function animate() {
-    layers.forEach((layer) => {
-      const { ctx, c, items, cfg } = layer;
-      ctx.clearRect(0, 0, c.width, c.height);
+  // 2. 全体背景のやさしい光の粒
+  const particles = [];
+  for (let i = 0; i < 15; i++) {
+    particles.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: 2 + Math.random() * 4,
+      speed: 0.0002 + Math.random() * 0.0005,
+      wobble: Math.random() * Math.PI * 2,
+    });
+  }
 
-      if (cfg.isCircle) {
-        // パウダー粒子がふわふわと上昇する表現
-        items.forEach((p) => {
-          ctx.beginPath();
-          ctx.fillStyle = cfg.color;
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fill();
+  setupCanvas(bgCanvas, (canvas, ctx) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(2, 132, 199, 0.1)";
 
-          p.y -= p.speed;
-          if (p.y < -p.radius) {
-            p.y = c.height + p.radius;
-            p.x = Math.random() * c.width;
-          }
-        });
-      } else if (cfg.isWave) {
-        // 穏やかなパステルウェーブの表現
-        items.forEach((w) => {
-          ctx.beginPath();
-          ctx.strokeStyle = cfg.color;
-          ctx.lineWidth = 2.5;
-          w.phase += w.speed;
+    particles.forEach((p) => {
+      const px = p.x * canvas.width;
+      const py = p.y * canvas.height;
 
-          for (let x = 0; x < c.width; x++) {
-            const y = w.y + Math.sin(x * w.length + w.phase) * w.amplitude;
-            if (x === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-          ctx.stroke();
-        });
+      ctx.beginPath();
+      ctx.arc(px, py, p.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      p.y -= p.speed;
+      p.wobble += 0.01;
+      p.x += Math.sin(p.wobble) * 0.0002;
+
+      if (p.y < -0.05) {
+        p.y = 1.05;
+        p.x = Math.random();
       }
     });
-    requestAnimationFrame(animate);
-  }
-
-  if (layers.length > 0) {
-    animate();
-  }
+  });
 })();
 
-// --- ヒーロービデオの自動再生ハンドリング ---
+// --- ヒーロービデオのモバイル自動再生サポート枠 ---
 (() => {
-  const heroVideo = document.querySelector(".hero-video");
-  const heroSection = document.querySelector(".hero");
-  if (!heroVideo || !heroSection) return;
-
-  heroVideo.muted = true;
-
-  const showPlayButton = () => {
-    if (document.querySelector(".hero-play")) return;
-    const btn = document.createElement("button");
-    btn.className = "hero-play";
-    btn.setAttribute("aria-label", "動画再生");
-    btn.innerText = "▶";
-    btn.addEventListener("click", () => {
-      heroVideo.muted = true;
-      heroVideo.play().then(() => btn.remove());
-    });
-    heroSection.appendChild(btn);
-  };
-
-  const tryPlay = () => {
-    const p = heroVideo.play();
-    if (p !== undefined) {
-      p.then(() => {
-        heroSection.classList.add("video-playing");
-      }).catch(() => {
-        showPlayButton();
-      });
-    }
-  };
-
-  tryPlay();
-  ["click", "touchstart"].forEach((ev) => {
-    window.addEventListener(ev, tryPlay, { once: true });
+  const video = document.querySelector(".hero-video");
+  if (!video) return;
+  video.muted = true;
+  video.play().catch(() => {
+    // ブラウザの自動再生ブロックを回避するためジェスチャーを待つ
+    const playVideo = () => {
+      video.play();
+      window.removeEventListener("click", playVideo);
+      window.removeEventListener("touchstart", playVideo);
+    };
+    window.addEventListener("click", playVideo);
+    window.addEventListener("touchstart", playVideo);
   });
 })();

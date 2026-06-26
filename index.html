@@ -21,9 +21,9 @@
       <nav class="nav-links">
         <a href="#about">当院について</a>
         <a href="#features">3つの特徴</a>
-        <a href="#schedule">診療時間</a>
+        <a href="#schedule">診療時間・アクセス</a>
         <a href="#gallery">院内・設備</a>
-        <a href="#contact" class="nav-cta">お問い合わせ</a>
+        <a href="#faq" class="nav-cta">よくある質問</a>
       </nav>
     </header>
 
@@ -45,8 +45,8 @@
           大切なご家族や、あなた自身の小さなお悩みに。パステルブルーの穏やかな空間のなかで、丁寧な対話と確かな技術をもってお応えします。いつでもお気軽にご相談ください。
         </p>
         <div class="hero-cta">
-          <a class="btn primary" href="#contact">お問い合わせはこちら</a>
-          <a class="btn ghost" href="#schedule">診療時間を見る</a>
+          <a class="btn primary" href="#faq">よくある質問を見る</a>
+          <a class="btn ghost" href="#schedule">診療時間・アクセス</a>
         </div>
       </div>
     </section>
@@ -120,11 +120,12 @@
       </div>
     </section>
 
+    <!-- 診療時間＆アクセスマップセクション -->
     <section id="schedule" class="schedule">
       <div class="container">
         <div class="section-title-wrap text-center">
-          <p class="section-sub">CLINIC HOURS</p>
-          <h2>診療時間のご案内</h2>
+          <p class="section-sub">CLINIC HOURS & ACCESS</p>
+          <h2>診療時間・アクセスのご案内</h2>
         </div>
 
         <div class="schedule-table-wrap">
@@ -169,6 +170,73 @@
           ※ 木曜日・日曜日・祝日は休診日となります。<br class="sp-only" />
           ※ ▲…水曜日・土曜日の午後は14:00〜16:30までの診療となります。
         </p>
+
+        <!-- 地図・店舗情報表示用のグリッド枠（新設） -->
+        <div
+          class="access-map-grid"
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+            align-items: start;
+          "
+        >
+          <div
+            class="access-info"
+            style="
+              background: rgba(255, 255, 255, 0.05);
+              padding: 30px;
+              border-radius: 8px;
+            "
+          >
+            <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: #fff">
+              🐾 サンプル クリニック
+            </h3>
+            <p style="margin-bottom: 10px">
+              <strong>所在地：</strong> 〒000-0000 東京都〇〇区〇〇1-2-3
+            </p>
+            <p style="margin-bottom: 10px">
+              <strong>電話番号：</strong> 03-XXXX-XXXX
+            </p>
+            <p style="margin-bottom: 10px">
+              <strong>最寄り駅：</strong> 〇〇線「〇〇駅」北口より徒歩5分
+            </p>
+            <p
+              style="
+                font-size: 0.9rem;
+                color: #ccc;
+                margin-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding-top: 15px;
+              "
+            >
+              ※お車でお越しの際は、院内ギャラリーに掲載のある専用駐車スペース（5台分）をご利用ください。
+            </p>
+          </div>
+          <div
+            class="access-map-box"
+            style="
+              width: 100%;
+              height: 300px;
+              background: #eee;
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <!-- Googleマップなどの iframe 埋め込み用エリア（サンプル地図を設置しています） -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280303808788!2d139.7525793!3d35.6894875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c0d02d993d7%3A0x217e29000ece20a!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+              width="100%"
+              height="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            >
+            </iframe>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -266,45 +334,77 @@
       </div>
     </section>
 
-    <section id="contact" class="contact">
+    <!-- FAQ（よくある質問）セクション ※お問い合わせから差し替え -->
+    <section id="faq" class="contact">
       <div class="container contact-inner">
         <div class="section-title-wrap text-center">
-          <p class="section-sub">CONTACT US</p>
-          <h2>お問い合わせ・ご相談</h2>
+          <p class="section-sub">FAQ</p>
+          <h2>よくある質問</h2>
           <p class="contact-lead-text">
-            各種お悩みに関するご質問やご相談、メッセージはこちらからお気軽にお寄せください。
+            皆さまから寄せられる代表的なご質問をまとめています。
           </p>
         </div>
-        <div class="contact-form">
-          <div class="form-group-row">
-            <div class="form-group">
-              <input type="text" placeholder="お名前" required />
-            </div>
-            <div class="form-group">
-              <input type="tel" placeholder="お電話番号" required />
-            </div>
+
+        <!-- クリニック向けのシンプルなFAQリスト構造 -->
+        <div
+          class="faq-list"
+          style="
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+          "
+        >
+          <div
+            class="faq-item"
+            style="
+              background: rgba(255, 255, 255, 0.05);
+              padding: 24px;
+              border-radius: 6px;
+            "
+          >
+            <p style="font-weight: 700; color: #0b0b0b; margin-bottom: 8px">
+              Q. 受診に事前予約は必要ですか？
+            </p>
+            <p style="color: #0b0b0b; font-size: 0.95rem">
+              A.
+              当院は初診・再診ともに予約優先制となっております。予約なしでのご来院も可能ですが、時間帯によってはお待ちいただく場合がございますので、事前にお電話等で混雑状況をご確認いただくことをおすすめいたします。
+            </p>
           </div>
-          <div class="form-group">
-            <input type="email" placeholder="メールアドレス" required />
+          <div
+            class="faq-item"
+            style="
+              background: rgba(255, 255, 255, 0.05);
+              padding: 24px;
+              border-radius: 6px;
+            "
+          >
+            <p style="font-weight: 700; color: #0b0b0b; margin-bottom: 8px">
+              Q. 初めて受診する際の持ち物を教えてください。
+            </p>
+            <p style="color: #0b0b0b; font-size: 0.95rem">
+              A.
+              各種健康保険証（またはマイナ保険証）を必ずお持ちください。また、他院からの紹介状や、お薬手帳、各種公費受給者証などをお持ちであれば、合わせて受付へご提示ください。
+            </p>
           </div>
-          <div class="form-group">
-            <select required>
-              <option value="" disabled selected>
-                お問い合わせ内容の項目を選択してください
-              </option>
-              <option value="consultation">症状や治療についてのご相談</option>
-              <option value="facility">院内設備やサービスに関するご質問</option>
-              <option value="other">その他のお問い合わせ</option>
-            </select>
+          <div
+            class="faq-item"
+            style="
+              background: rgba(255, 255, 255, 0.05);
+              padding: 24px;
+              border-radius: 6px;
+            "
+          >
+            <p style="font-weight: 700; color: #0b0b0b; margin-bottom: 8px">
+              Q. 駐車場や駐輪場はありますか？
+            </p>
+            <p style="color: #0b0b0b; font-size: 0.95rem">
+              A.
+              はい、敷地内にゆったりとした駐車スペース（5台分）と駐輪場を完備しておりますので、お車や自転車でも安心してお越しいただけます。
+            </p>
           </div>
-          <div class="form-group">
-            <textarea
-              placeholder="お問い合わせ内容をご記入ください"
-              rows="6"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn primary submit-btn">送信する</button>
         </div>
       </div>
     </section>
