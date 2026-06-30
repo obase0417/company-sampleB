@@ -383,7 +383,7 @@ h2 {
 }
 
 /* ==========================================================================
-   Schedule & Access Section (店舗情報・アクセスマップ制御追加)
+   Schedule & Access Section (店舗情報・アクセスマップ縦並び制御)
    ========================================================================== */
 .schedule {
   background: #fff;
@@ -429,22 +429,18 @@ h2 {
   line-height: 1.6;
 }
 
-/* 新設：地図情報用のグリッドレイアウト */
+/* 地図情報用の縦並びレイアウト */
 .access-map-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 60px;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column; /* 縦並びに設定 */
+  gap: 30px;
+  margin-top: 50px;
 }
 .access-info {
   background: #f8fafc;
   padding: 35px;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 .access-info h3 {
   font-size: 1.3rem;
@@ -471,7 +467,7 @@ h2 {
 }
 .access-map-box {
   width: 100%;
-  min-height: 320px;
+  height: 400px; /* 縦並びで見やすくなるよう高さを調整 */
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #e2e8f0;
@@ -535,7 +531,7 @@ h2 {
 }
 
 /* ==========================================================================
-   FAQ Section (旧Contactのおしゃれなラップを引き継いだFAQ用コントロール)
+   FAQ Section
    ========================================================================== */
 .contact {
   padding: 100px 0;
@@ -551,7 +547,6 @@ h2 {
   font-size: 0.95rem;
 }
 
-/* FAQ用のリストとカードの個別装飾 */
 .faq-list {
   max-width: 760px;
   margin: 40px auto 0;
@@ -625,6 +620,30 @@ h2 {
    Responsive Media Queries
    ========================================================================== */
 @media (max-width: 960px) {
+  /* --- タブレット時のヘッダー調整 --- */
+  .header {
+    padding: 12px 3%;
+  }
+  .logo {
+    font-size: 1.05rem;
+    gap: 4px;
+  }
+  .logo-icon {
+    font-size: 1.1rem;
+  }
+  .nav-links {
+    gap: 12px;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  .nav-links a.nav-cta {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+
+  /* --- タブレットスタイル --- */
   .hero-content h1 {
     font-size: 2.4rem;
   }
@@ -636,26 +655,61 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  .access-map-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .access-map-box {
-    min-height: 280px;
-  }
 }
 
 @media (max-width: 650px) {
+  /* --- スマホ時の文章全体の余白調整 --- */
+  .container {
+    padding: 0 1em;
+  }
+
+  /* --- スマホ時のヘッダー調整 --- */
   .header {
-    padding: 14px 20px;
+    padding: 8px 2%;
   }
   .logo {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+    gap: 2px;
+  }
+  .logo-icon {
+    font-size: 0.85rem;
   }
   .nav-links {
-    display: none;
-  } /* 本来はハンバーガーにする等 */
+    display: flex;
+    gap: 4px;
+  }
+  .nav-links a {
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+  .nav-links a.nav-cta {
+    padding: 5px 8px;
+    font-size: 0.65rem;
+  }
 
+  /* --- 診療時間表の縮小調整 --- */
+  .schedule-table {
+    min-width: 100%;
+  }
+  .schedule-table th,
+  .schedule-table td {
+    padding: 8px 2px;
+    font-size: 0.72rem;
+  }
+  .schedule-table .time-label {
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  /* --- スマホ時のMAP高さ微調整 --- */
+  .access-map-box {
+    height: 280px;
+  }
+  .access-map-grid {
+    gap: 20px;
+  }
+
+  /* --- スマホスタイル --- */
   .hero-content h1 {
     font-size: 1.8rem;
   }
