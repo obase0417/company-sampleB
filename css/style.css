@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Base & Reset Settings (Pastel Blue Healthcare Concept)
+   Base & Reset Settings (Warm & Friendly Hair Salon Concept)
    ========================================================================== */
 * {
   margin: 0;
@@ -13,8 +13,8 @@ html {
 
 body {
   font-family: "Noto Sans JP", sans-serif;
-  background: #f0f7f9;
-  color: #334155;
+  background: #fbf5ec;
+  color: #52443a;
   overflow-x: hidden;
   line-height: 1.8;
   -webkit-text-size-adjust: 100%;
@@ -56,14 +56,14 @@ body {
   left: -10%;
   width: 40vw;
   height: 40vw;
-  background: #e0f2fe;
+  background: #f6e3d3;
 }
 .orbs span:nth-child(2) {
   bottom: -10%;
   right: -10%;
   width: 50vw;
   height: 50vw;
-  background: #e0f2fe;
+  background: #f3e6cf;
   animation-delay: -5s;
 }
 .orbs span:nth-child(3) {
@@ -71,7 +71,7 @@ body {
   left: 50%;
   width: 35vw;
   height: 35vw;
-  background: #f0fdf4;
+  background: #e7eee2;
   animation-delay: -10s;
 }
 
@@ -84,6 +84,19 @@ body {
   }
 }
 
+/* スクロールでふわっと表示 */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ==========================================================================
    Header Navbar
    ========================================================================== */
@@ -94,25 +107,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 5%;
-  background: rgba(255, 255, 255, 0.85);
+  padding: 14px 5%;
+  background: rgba(253, 249, 242, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(224, 242, 254, 0.8);
+  border-bottom: 1px solid rgba(233, 211, 180, 0.6);
   z-index: 100;
 }
 
 .logo {
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
-  color: #0f172a;
+  font-size: 1.2rem;
+  color: #43362c;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .logo-icon {
-  font-size: 1.4rem;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.logo-em {
+  color: #c1683f;
 }
 
 .nav-links {
@@ -122,25 +140,26 @@ body {
 }
 .nav-links a {
   text-decoration: none;
-  color: #475569;
+  color: #6d5c4e;
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.3s;
 }
 .nav-links a:hover {
-  color: #0284c7;
+  color: #c1683f;
 }
 .nav-links a.nav-cta {
-  background: #0284c7;
+  background: #c97e5a;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 50px;
   transition:
     background 0.3s,
     transform 0.3s;
 }
 .nav-links a.nav-cta:hover {
-  background: #0369a1;
+  background: #a9603e;
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -153,7 +172,7 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #f8fafc;
+  background: #fbf5ec;
 }
 
 .hero-video {
@@ -172,8 +191,8 @@ body {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(240, 247, 249, 0.8),
-    rgba(255, 255, 255, 0.45)
+    rgba(251, 245, 236, 0.82),
+    rgba(255, 252, 246, 0.4)
   );
   z-index: 3;
 }
@@ -181,31 +200,32 @@ body {
 .hero-content {
   position: relative;
   z-index: 4;
-  color: #0f172a;
-  max-width: 750px;
+  color: #43362c;
+  max-width: 780px;
 }
 
 .hero-content .eyebrow {
   font-family: "Quicksand", sans-serif;
   font-size: 0.9rem;
-  color: #0284c7;
+  color: #c1683f;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: 16px;
 }
 
 .hero-content h1 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  line-height: 1.4;
-  color: #0f172a;
+  line-height: 1.45;
+  color: #43362c;
   margin-bottom: 24px;
 }
 
 .hero-content .lead {
-  color: #334155;
+  color: #5f5044;
   font-size: 1.05rem;
-  line-height: 1.9;
+  line-height: 2;
   margin-bottom: 40px;
 }
 
@@ -225,27 +245,31 @@ body {
   cursor: pointer;
   text-align: center;
 }
+.btn-lg {
+  padding: 18px 46px;
+  font-size: 1.05rem;
+}
 
 .btn.primary {
-  background: #0284c7;
+  background: #c97e5a;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 6px 16px rgba(201, 126, 90, 0.32);
 }
 .btn.primary:hover {
-  background: #0369a1;
+  background: #a9603e;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 8px 22px rgba(169, 96, 62, 0.4);
 }
 
 .btn.ghost {
   background: #fff;
-  color: #0284c7;
-  border: 1px solid #bae6fd;
+  color: #b06844;
+  border: 1.5px solid #ead4bd;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
 }
 .btn.ghost:hover {
-  background: #f0f9ff;
-  border-color: #0284c7;
+  background: #fdf6ee;
+  border-color: #c97e5a;
   transform: translateY(-2px);
 }
 
@@ -253,9 +277,9 @@ body {
    Stats Counter Section
    ========================================================================== */
 .stats {
-  background: #fff;
+  background: #fffdf9;
   padding: 60px 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #f0e2cd;
 }
 .stats-container {
   display: flex;
@@ -267,12 +291,12 @@ body {
   font-family: "Quicksand", sans-serif;
   font-size: 3rem;
   font-weight: 700;
-  color: #0284c7;
+  color: #c1683f;
   line-height: 1;
 }
 .stat-item p {
   font-size: 0.9rem;
-  color: #64748b;
+  color: #8b7a69;
   margin-top: 8px;
   font-weight: 500;
 }
@@ -288,23 +312,29 @@ body {
 }
 .section-sub {
   font-family: "Quicksand", sans-serif;
-  color: #0284c7;
+  color: #c1683f;
   font-weight: 700;
   font-size: 0.85rem;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   margin-bottom: 8px;
 }
 h2 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #43362c;
+}
+.section-lead {
+  margin-top: 14px;
+  color: #8b7a69;
+  font-size: 0.95rem;
 }
 
 /* ==========================================================================
-   About Section
+   Concept (About) Section
    ========================================================================== */
 .about {
-  padding: 100px 0;
+  padding: 110px 0 100px;
 }
 .about-grid {
   display: grid;
@@ -314,11 +344,11 @@ h2 {
 }
 .about-img-box img {
   width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+  border-radius: 28px 28px 28px 90px;
+  box-shadow: 0 24px 44px rgba(87, 62, 40, 0.12);
 }
 .about-desc {
-  color: #475569;
+  color: #6d5c4e;
   margin-bottom: 30px;
 }
 .about-check-list {
@@ -326,7 +356,7 @@ h2 {
 }
 .about-check-list li {
   position: relative;
-  padding-left: 28px;
+  padding-left: 30px;
   margin-bottom: 14px;
   font-weight: 500;
 }
@@ -334,62 +364,205 @@ h2 {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #0ea5e9;
+  color: #8faa88;
   font-weight: 700;
   font-size: 1.1rem;
 }
 
 /* ==========================================================================
-   Features Section
+   Menu & Price Section
    ========================================================================== */
-.features {
+.menu {
+  background: #fffdf9;
+  padding: 100px 0;
+  border-top: 1px solid #f0e2cd;
+  border-bottom: 1px solid #f0e2cd;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+.menu-card {
+  background: #fdf8f0;
+  border: 1px solid #f0e2cd;
+  border-radius: 20px;
+  padding: 30px 32px;
+  transition: all 0.3s;
+}
+.menu-card:hover {
+  border-color: #e3c6a4;
+  box-shadow: 0 16px 30px rgba(201, 126, 90, 0.08);
+  transform: translateY(-3px);
+}
+.menu-card h3 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.15rem;
+  color: #43362c;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f6e3d3;
+  color: #b06844;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.menu-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px dashed #e9d6bd;
+}
+.menu-row:last-child {
+  border-bottom: none;
+}
+.menu-row dt {
+  color: #6d5c4e;
+  font-size: 0.95rem;
+}
+.menu-row dt::after {
+  content: "";
+}
+.menu-row dd {
+  margin-left: auto;
+  font-family: "Quicksand", "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  color: #b06844;
+  white-space: nowrap;
+}
+.menu-note {
+  margin-top: 26px;
+  font-size: 0.85rem;
+  color: #8b7a69;
+}
+
+/* ==========================================================================
+   Hair Catalog (Styles) Section
+   ========================================================================== */
+.styles {
   padding: 100px 0;
 }
-.cards {
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+.style-card {
+  background: #fffdf9;
+  border: 1px solid #f0e2cd;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  padding-bottom: 22px;
+  transition: all 0.3s;
+}
+.style-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 32px rgba(201, 126, 90, 0.1);
+  border-color: #e3c6a4;
+}
+.style-card img {
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+}
+.style-card h3 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.02rem;
+  color: #43362c;
+  padding: 0 14px;
+}
+.style-tags {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: #b06844;
+  padding: 0 14px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Staff Section
+   ========================================================================== */
+.staff {
+  background: #fffdf9;
+  padding: 100px 0;
+  border-top: 1px solid #f0e2cd;
+  border-bottom: 1px solid #f0e2cd;
+}
+.staff-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-.feature-card {
-  background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+.staff-card {
+  background: #fdf8f0;
+  border: 1px solid #f0e2cd;
+  border-radius: 24px;
+  padding: 36px 28px 32px;
+  text-align: center;
   transition: all 0.3s;
 }
-.feature-card:hover {
+.staff-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 30px rgba(2, 132, 199, 0.05);
-  border-color: #bae6fd;
+  box-shadow: 0 18px 32px rgba(201, 126, 90, 0.1);
+  border-color: #e3c6a4;
 }
-.feature-num {
-  font-family: "Quicksand", sans-serif;
-  font-size: 2.5rem;
+.staff-card img {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 18px;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 18px rgba(87, 62, 40, 0.12);
+}
+.staff-role {
+  font-size: 0.78rem;
+  color: #b06844;
   font-weight: 700;
-  color: #e0f2fe;
-  line-height: 1;
-  margin-bottom: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
 }
-.feature-card h3 {
-  font-size: 1.15rem;
-  color: #0f172a;
+.staff-card h3 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  font-size: 1.25rem;
+  color: #43362c;
+  margin-bottom: 10px;
+}
+.staff-tags {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #6f8a66;
+  background: #eef3ea;
+  border-radius: 50px;
+  padding: 4px 14px;
   margin-bottom: 14px;
 }
-.feature-card p {
+.staff-comment {
   font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.7;
+  color: #6d5c4e;
+  line-height: 1.8;
+  text-align: left;
 }
 
 /* ==========================================================================
-   Schedule & Access Section (店舗情報・アクセスマップ縦並び制御)
+   Schedule & Access Section
    ========================================================================== */
 .schedule {
-  background: #fff;
+  background: #fffdf9;
   padding: 100px 0;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  border-top: 1px solid #f0e2cd;
+  border-bottom: 1px solid #f0e2cd;
 }
 .schedule-table-wrap {
   overflow-x: auto;
@@ -404,74 +577,77 @@ h2 {
 .schedule-table th,
 .schedule-table td {
   padding: 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #eddfc9;
   font-size: 0.95rem;
 }
 .schedule-table th {
-  background: #f8fafc;
-  color: #334155;
+  background: #faf3e7;
+  color: #52443a;
   font-weight: 700;
 }
-.schedule-table td.closed {
-  color: #94a3b8;
-  background: #f1f5f9;
+.schedule-table td.closed,
+.schedule-table th.closed-day {
+  color: #b3a08c;
+  background: #f5ede0;
 }
 .schedule-table .sat {
-  color: #0284c7;
+  color: #b06844;
 }
 .time-label {
-  background: #f8fafc;
+  background: #faf3e7;
   font-weight: 500;
 }
 .schedule-note {
   font-size: 0.85rem;
-  color: #64748b;
-  line-height: 1.6;
+  color: #8b7a69;
+  line-height: 1.8;
 }
 
 /* 地図情報用の縦並びレイアウト */
 .access-map-grid {
   display: flex;
-  flex-direction: column; /* 縦並びに設定 */
+  flex-direction: column;
   gap: 30px;
   margin-top: 50px;
 }
 .access-info {
-  background: #f8fafc;
+  background: #fdf8f0;
   padding: 35px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  border: 1px solid #f0e2cd;
 }
 .access-info h3 {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   font-size: 1.3rem;
   margin-bottom: 20px;
-  color: #0f172a;
+  color: #43362c;
 }
 .access-info p {
   font-size: 0.95rem;
   margin-bottom: 12px;
-  color: #334155;
+  color: #52443a;
 }
 .access-info p:last-of-type {
   margin-bottom: 0;
 }
 .access-info strong {
-  color: #0f172a;
+  color: #43362c;
 }
 .access-notice {
   font-size: 0.85rem;
-  color: #64748b;
+  color: #8b7a69;
   margin-top: 20px;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #f0e2cd;
   padding-top: 20px;
 }
 .access-map-box {
   width: 100%;
-  height: 400px; /* 縦並びで見やすくなるよう高さを調整 */
-  border-radius: 12px;
+  height: 400px;
+  margin-top: 40px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f0e2cd;
+  box-shadow: 0 10px 25px rgba(87, 62, 40, 0.04);
 }
 
 /* ==========================================================================
@@ -500,21 +676,21 @@ h2 {
   will-change: transform;
 }
 .gallery-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  background: #fffdf9;
+  border: 1px solid #f0e2cd;
+  border-radius: 20px;
   overflow: hidden;
   width: 280px;
   flex-shrink: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+  box-shadow: 0 4px 6px rgba(87, 62, 40, 0.02);
   transition: border-color 0.3s;
 }
 .gallery-card:hover {
-  border-color: #bae6fd;
+  border-color: #e3c6a4;
 }
 .card-img-wrap {
   overflow: hidden;
-  height: 180px;
+  height: 190px;
   pointer-events: none;
 }
 .gallery-card img {
@@ -524,7 +700,7 @@ h2 {
 }
 .gallery-card p {
   padding: 16px;
-  color: #475569;
+  color: #6d5c4e;
   font-weight: 500;
   font-size: 0.85rem;
   text-align: center;
@@ -535,62 +711,135 @@ h2 {
    ========================================================================== */
 .contact {
   padding: 100px 0;
-  background: #fff;
-  border-top: 1px solid #e2e8f0;
+  background: transparent;
 }
 .contact-inner {
   max-width: 850px;
 }
 .contact-lead-text {
   margin-top: 8px;
-  color: #64748b;
+  color: #8b7a69;
   font-size: 0.95rem;
 }
 
 .faq-list {
   max-width: 760px;
-  margin: 40px auto 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 .faq-item {
-  background: #f8fafc;
-  padding: 26px 30px;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  background: #fffdf9;
+  border-radius: 18px;
+  border: 1px solid #f0e2cd;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 .faq-item:hover {
-  border-color: #bae6fd;
-  background: #fdfeff;
-  box-shadow: 0 10px 20px rgba(2, 132, 199, 0.02);
+  border-color: #e3c6a4;
+  box-shadow: 0 10px 20px rgba(201, 126, 90, 0.05);
 }
 .faq-question {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 10px;
+  color: #43362c;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
+  padding: 22px 26px;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-question::-webkit-details-marker {
+  display: none;
 }
 .faq-question .q-prefix {
-  color: #0284c7;
+  color: #c1683f;
   font-family: "Quicksand", sans-serif;
+}
+.faq-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f6e3d3;
+  position: relative;
+  transition: transform 0.3s;
+}
+.faq-toggle::before,
+.faq-toggle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 2.5px;
+  background: #b06844;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+}
+.faq-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: transform 0.3s;
+}
+.faq-item[open] .faq-toggle::after {
+  transform: translate(-50%, -50%) rotate(0deg);
 }
 .faq-answer {
   font-size: 0.95rem;
-  color: #475569;
-  line-height: 1.8;
+  color: #6d5c4e;
+  line-height: 1.9;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
+  padding: 0 26px 24px;
 }
 .faq-answer .a-prefix {
-  color: #94a3b8;
+  color: #b3a08c;
   font-family: "Quicksand", sans-serif;
   font-weight: 700;
+}
+
+/* ==========================================================================
+   Reservation CTA Section
+   ========================================================================== */
+.reserve {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f6e3d3, #f3ead8);
+  border-top: 1px solid #f0e2cd;
+}
+.reserve-inner {
+  text-align: center;
+  max-width: 720px;
+}
+.reserve-lead {
+  margin-top: 16px;
+  color: #6d5c4e;
+  font-size: 0.98rem;
+}
+.reserve-cta {
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.reserve-sns {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #8b7a69;
+}
+.sns-link {
+  color: #b06844;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px dashed #d9a886;
+  transition: color 0.3s;
+}
+.sns-link:hover {
+  color: #a9603e;
 }
 
 /* ==========================================================================
@@ -598,8 +847,8 @@ h2 {
    ========================================================================== */
 .footer {
   padding: 40px 20px;
-  background: #0f172a;
-  color: #94a3b8;
+  background: #43362c;
+  color: #c8b8a6;
   font-size: 0.85rem;
 }
 .footer-flex {
@@ -608,12 +857,13 @@ h2 {
   align-items: center;
 }
 .footer-logo {
+  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   font-weight: 700;
   color: #fff;
   font-size: 1rem;
 }
 .footer-copy {
-  color: #64748b;
+  color: #a08e7a;
 }
 
 /* ==========================================================================
@@ -626,10 +876,11 @@ h2 {
   }
   .logo {
     font-size: 1.05rem;
-    gap: 4px;
+    gap: 6px;
   }
   .logo-icon {
-    font-size: 1.1rem;
+    width: 26px;
+    height: 26px;
   }
   .nav-links {
     gap: 12px;
@@ -651,9 +902,19 @@ h2 {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .cards {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .style-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+  .staff-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 520px;
+    margin: 0 auto;
   }
 }
 
@@ -669,25 +930,26 @@ h2 {
   }
   .logo {
     font-size: 0.8rem;
-    gap: 2px;
+    gap: 4px;
   }
   .logo-icon {
-    font-size: 0.85rem;
+    width: 20px;
+    height: 20px;
   }
   .nav-links {
     display: flex;
-    gap: 4px;
+    gap: 5px;
   }
   .nav-links a {
     font-size: 0.65rem;
     white-space: nowrap;
   }
   .nav-links a.nav-cta {
-    padding: 5px 8px;
+    padding: 5px 9px;
     font-size: 0.65rem;
   }
 
-  /* --- 診療時間表の縮小調整 --- */
+  /* --- 営業時間表の縮小調整 --- */
   .schedule-table {
     min-width: 100%;
   }
@@ -711,7 +973,7 @@ h2 {
 
   /* --- スマホスタイル --- */
   .hero-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.85rem;
   }
   .hero-cta {
     flex-direction: column;
@@ -720,6 +982,9 @@ h2 {
   .btn {
     width: 100%;
     padding: 14px 20px;
+  }
+  .reserve-cta .btn {
+    width: 100%;
   }
 
   .stats-container {
@@ -731,18 +996,28 @@ h2 {
   }
 
   .about,
-  .features,
+  .menu,
+  .styles,
+  .staff,
   .schedule,
   .gallery,
-  .contact {
+  .contact,
+  .reserve {
     padding: 60px 0;
   }
   h2 {
     font-size: 1.5rem;
   }
 
-  .cards {
-    grid-template-columns: 1fr;
+  .menu-card {
+    padding: 22px 20px;
+  }
+  .style-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .style-card h3 {
+    font-size: 0.9rem;
   }
   .sp-only {
     display: block;
@@ -751,14 +1026,13 @@ h2 {
   .access-info {
     padding: 24px;
   }
-  .faq-item {
-    padding: 20px;
-  }
   .faq-question {
-    font-size: 0.95rem;
+    padding: 18px 18px;
+    font-size: 0.92rem;
   }
   .faq-answer {
     font-size: 0.9rem;
+    padding: 0 18px 20px;
   }
 
   .footer-flex {

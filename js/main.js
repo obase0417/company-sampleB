@@ -1,4 +1,4 @@
-// --- 空間紹介 (GALLERY) 無限ループ・自動スクロール × ドラッグハイブリッド ---
+// --- 店内紹介 (SALON TOUR) 無限ループ・自動スクロール × ドラッグハイブリッド ---
 (() => {
   const slider = document.getElementById("gallery-slider");
   const track = document.getElementById("gallery-track");
@@ -116,7 +116,27 @@
   counters.forEach((counter) => observer.observe(counter));
 })();
 
-// --- 背景粒子・波アニメーション (CANVAS EFFECTS) ---
+// --- スクロールでふわっと表示 (REVEAL ANIMATION) ---
+(() => {
+  const targets = document.querySelectorAll(".reveal");
+  if (targets.length === 0) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 },
+  );
+
+  targets.forEach((el) => observer.observe(el));
+})();
+
+// --- 背景の光の粒・ヒーローの波と光線アニメーション (CANVAS EFFECTS) ---
 (() => {
   const heroCanvas = document.getElementById("hero-canvas");
   const bgCanvas = document.getElementById("bg-canvas");
@@ -139,21 +159,55 @@
     requestAnimationFrame(loop);
   };
 
-  // 1. ヒーローセクションのゆったりとした波線の演出
+  // 1. ヒーローセクション：木漏れ日の光線と多層のオーガニックウェーブ
   let wavePhase = 0;
   setupCanvas(heroCanvas, (canvas, ctx) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.strokeStyle = "rgba(2, 132, 199, 0.04)";
-    ctx.lineWidth = 3;
-    wavePhase += 0.005;
+    wavePhase += 0.003;
 
-    for (let x = 0; x < canvas.width; x++) {
-      const y = canvas.height * 0.6 + Math.sin(x * 0.002 + wavePhase) * 30;
-      if (x === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
+    // A. 差し込む木漏れ日のような光（グラデーションの重なり）
+    const lightGrad = ctx.createLinearGradient(
+      0,
+      0,
+      canvas.width * 0.4,
+      canvas.height,
+    );
+    const alpha1 = 0.07 + Math.sin(wavePhase * 2) * 0.02;
+    const alpha2 = 0.03 + Math.cos(wavePhase * 1.5) * 0.01;
+    lightGrad.addColorStop(0, `rgba(255, 248, 235, ${alpha1})`);
+    lightGrad.addColorStop(0.5, `rgba(246, 227, 211, ${alpha2})`);
+    lightGrad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+    ctx.fillStyle = lightGrad;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(canvas.width * 0.7, 0);
+    ctx.lineTo(canvas.width * 0.3, canvas.height);
+    ctx.lineTo(0, canvas.height);
+    ctx.closePath();
+    ctx.fill();
+
+    // B. 多層のゆったりとした髪のラインや風を連想させる波線
+    const drawWave = (baseY, amplitude, speedMultiplier, color) => {
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      for (let x = 0; x <= canvas.width; x += 5) {
+        const p = wavePhase * speedMultiplier;
+        const y =
+          baseY +
+          Math.sin(x * 0.0015 + p) * amplitude +
+          Math.cos(x * 0.003 - p) * (amplitude * 0.3);
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    };
+
+    // 質感の異なる3本のシアーラインをブレンド
+    drawWave(canvas.height * 0.55, 35, 1.0, "rgba(201, 126, 90, 0.08)");
+    drawWave(canvas.height * 0.6, 25, 0.7, "rgba(143, 170, 136, 0.06)");
+    drawWave(canvas.height * 0.65, 45, 1.2, "rgba(246, 227, 211, 0.12)");
   });
 
   // 2. 全体背景のやさしい光の粒
@@ -170,7 +224,7 @@
 
   setupCanvas(bgCanvas, (canvas, ctx) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgba(2, 132, 199, 0.1)";
+    ctx.fillStyle = "rgba(201, 126, 90, 0.12)";
 
     particles.forEach((p) => {
       const px = p.x * canvas.width;
@@ -198,7 +252,6 @@
   if (!video) return;
   video.muted = true;
   video.play().catch(() => {
-    // ブラウザの自動再生ブロックを回避するためジェスチャーを待つ
     const playVideo = () => {
       video.play();
       window.removeEventListener("click", playVideo);
@@ -208,3 +261,18 @@
     window.addEventListener("touchstart", playVideo);
   });
 })();
+
+// --- ヒーローテキストの時間差じんわり表示 ---
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedItems = document.querySelectorAll(
+    ".hero-content .animated-item",
+  );
+  animatedItems.forEach((item, index) => {
+    setTimeout(
+      () => {
+        item.classList.add("is-active");
+      },
+      300 + index * 250,
+    ); // 250msずつずらして心地よいテンポでフェードイン
+  });
+});
